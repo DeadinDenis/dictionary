@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results - 18th Century English Slang</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Main Page</a>
+            <a href="/about">About Us</a>
+            <form action="/search" method="get" style="display:inline;">
+                <input type="text" name="q" placeholder="Search..." value="{{ query }}">
+                <button type="submit">Search</button>
+            </form>
+        </nav>
+    </header>
+    <main>
+        <h1>Search Results for "{{ query }}"</h1>
+        {% if results %}
+            <ul>
+            {% for result in results %}
+                <li><a href="/word/{{ result.letter }}/{{ result.word }}">{{ result.word }}</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+        <p><a href="/">Back to Main Page</a></p>
+    </main>
+</body>
+</html>

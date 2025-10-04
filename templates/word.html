@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ word.word if word else 'Word Not Found' }} - 18th Century English Slang</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Main Page</a>
+            <a href="/about">About Us</a>
+            <form action="/search" method="get" style="display:inline;">
+                <input type="text" name="q" placeholder="Search...">
+                <button type="submit">Search</button>
+            </form>
+        </nav>
+    </header>
+    <main>
+        {% if word %}
+            <h1>{{ word.word }}</h1>
+            <p><strong>Definition:</strong> {{ word.definition }}</p>
+            {% if word.image %}
+                <p><img src="{{ url_for('static', filename=word.image) if not word.image.startswith('http') else word.image }}" alt="{{ word.word }} image" style="max-width:300px;"></p>
+            {% endif %}
+            {% if word.examples %}
+                <p><strong>Examples:</strong><br>{{ word.examples|replace('\n', '<br>')|safe }}</p>
+            {% endif %}
+            <p><a href="/">Back to Main Page</a></p>
+        {% else %}
+            <h1>Word Not Found</h1>
+            <p>The word you are looking for does not exist in our dictionary.</p>
+            <p><a href="/">Back to Main Page</a></p>
+        {% endif %}
+    </main>
+</body>
+</html>

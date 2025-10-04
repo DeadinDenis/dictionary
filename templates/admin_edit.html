@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Word - Admin</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Main Page</a>
+            <a href="/about">About Us</a>
+            <a href="/admin">Admin</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Edit Word</h1>
+        <form method="post">
+            <label>Word:<br><input type="text" name="word" value="{{ word.word }}" required></label><br><br>
+            <label>Definition:<br><textarea name="definition" required rows="4" cols="40">{{ word.definition }}</textarea></label><br><br>
+            <label>Image URL or filename:<br><input type="text" name="image" value="{{ word.image or '' }}"></label><br><br>
+            <label>Examples:<br><textarea name="examples" rows="3" cols="40">{{ word.examples or '' }}</textarea></label><br><br>
+            <button type="submit">Update Word</button>
+        </form>
+        <p><a href="/admin">Back to Admin</a></p>
+    </main>
+</body>
+</html>

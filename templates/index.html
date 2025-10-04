@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>18th Century English Slang Dictionary</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Main Page</a>
+            <a href="/about">About Us</a>
+            <form action="/search" method="get" style="display:inline;">
+                <input type="text" name="q" placeholder="Search...">
+                <button type="submit">Search</button>
+            </form>
+        </nav>
+    </header>
+    <main>
+        <h1>18th Century English Slang Dictionary</h1>
+        {% for letter in letters %}
+            <section>
+                <h2 id="{{ letter }}">{{ letter }}</h2>
+                <ul>
+                {% for word in slang_words.get(letter, [])|sort(attribute='word') %}
+                    <li><a href="/word/{{ letter }}/{{ word.word }}">{{ word.word }}</a></li>
+                {% endfor %}
+                </ul>
+            </section>
+        {% endfor %}
+    </main>
+</body>
+</html>
